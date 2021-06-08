@@ -1,87 +1,86 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="attendanceModule" >
+<html lang="en" ng-app="attendance" >
     <head>
         <meta charset="UTF-8" />
         <meta name="viewPort" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-        <script src="attendanceModule.js"></script>
-        <title>Student_Attendance APP</title>
+        <script src="attendance.js"></script>
+        <title>Mini_Attendance APP</title>
         <style>
             body{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                background-color: whitesmoke;
+                background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img (122).jpg");
+
                 font-family: sans-serif;
             }
             button{
                 padding: 10px;
-                background-color: yellowgreen;
-                border-radius: 10px;
-                border:none;
-                width: 100px;
+                color:beige;
+                background-color: black;
+                border-radius: 20px;
+            
+                width: 150px;
                 box-shadow: 1px 1px 10px black;
             }
             table{
+                border: solid;
                 border-collapse: collapse;
+                
             }
             table th,
             table td{
-                border:1px solid black;
+                
                 padding:10px 20px;
             }
             table th{
-                background-color: #1a1b1d;
+                background-color: black;
                 color: rgb(51, 161, 51);
             }
             table td{
-                background-color: rgb(102, 114, 102);
+                background-color:whitesmoke;
             }
-            .absentMarked{
-               background-color: rgb(218, 230, 61);
-            }
-            present{
-                background-color: rgb(131,253,131);
-            }
-            .absent{
-                background-color: rgb(56, 73, 50);
-                 }
-            .row{
-                background-color: rgb(131,253,131);
-            }     
+            
+            
+            
+            
         </style>
     </head>
-    <body ng-controller="attendanceTaker">
+    <body ng-controller="studentattendance">
         <table>
+            <thread >
+            <h1><b>Welcome Back !</b></h1>
+            </thread>
             <thead>
-                <h2>Student_Attendance</h2>
+                <h2><strong>Student-Attendance</strong></h2>
             </thead>
-            <tr>
-                <th>Sr. No.</th>
+            <tr >
+                <th>Serial No.</th>
                 <th>Name</th>
-                <th>Reg. No</th>
-                <th>Roll</th>
-                <th>Attendance</th>
+                <th>Reg. Number</th>
+                <th>Roll.No</th>
+                <th>Attendance(P/A)</th>
             </tr>
             <tr ng-repeat="student in students" 
-            ng-class="getClass(student.reg)" 
-            class="row" 
-            id="{{student.reg}}" >
+            ng-class="getClass(student.sreg)" 
+            
+            id="{{student.sreg}}" >
 
                 <td>{{ $index+1 }}</td>
-                <td>{{ student.name }}</td>
-                <td>{{ student.reg }}</td>
-                <td>{{ student.roll }}</td>
+                <td>{{ student.sname }}</td>
+                <td>{{ student.sreg }}</td>
+                <td>{{ student.sroll }}</td>
 
                 <td>
                 <select 
-                ng-model="student.attendance"
-                 ng-click="getId(student.reg,$index)"
+                ng-model="student.sattendance"
+                 ng-click="getId(student.sreg,$index)"
                  ng-mouseLeave="totalCount()" >
-                    <option value="p">Present</option>
+                    <option value="p" >Present</option>
                     <option value="a">Absent</option>
                 </select>
                 </td>
@@ -89,15 +88,15 @@
 
         </table>
         <div>
-            <h5>Total Count: {{ tota }}</h5>
+            <h5>TOTAL COUNT: {{ tota1 }}</h5>
+        </div>
+        <div classname ="small-box sidebar-dark-primary ">
+            <h5><b>PRESENTSTUDENT: {{ p }}</b></h5>
+            <h5><b>ABSENTSTUDENT: {{ a }}</b></h5>
         </div>
         <div>
-            <h5>Present: {{ p }}</h5>
-            <h5>Absent: {{ a }}</h5>
+            <button ng-click="submitForm()">SUBMITFORM</button>
         </div>
-        <div>
-            <button ng-click="submitForm()">Submit</button>
-        </div>
-        <script src="attendanceModule.js" ></script>
+        <script src="attendance.js" ></script>
     </body>
 </html>
